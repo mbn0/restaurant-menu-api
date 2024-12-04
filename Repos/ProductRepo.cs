@@ -55,10 +55,33 @@ namespace backend.Repos
             }
             product.Name = editProductDto.ProductName;
             product.Price = editProductDto.ProductPrice;
-            product.CatId = editProductDto.CatId;
             product.Image = editProductDto.ProductImage;
             await _context.SaveChangesAsync();
             return product;
+        }
+
+        public async Task<bool> DisableProduct(int Id)
+        {
+          var product = _context.Products.Find(Id);
+          if (product == null)
+          {
+            return false;
+          }
+          product.Available = false;
+          await _context.SaveChangesAsync();
+          return true;
+        }
+
+        public async Task<bool> EnableProduct(int catId)
+        {
+          var product = _context.Products.Find(catId);
+          if (product == null)
+          {
+            return false;
+          }
+          product.Available = true;
+          await _context.SaveChangesAsync();
+          return true;
         }
     }
 

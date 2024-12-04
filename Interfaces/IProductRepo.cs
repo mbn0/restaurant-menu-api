@@ -11,5 +11,7 @@ namespace backend.Interfaces
       Task<Product> AddProduct(AddProductDto product);
       Task<Product> EditProduct(EditProductDto product);
       Task<Boolean> DeleteProduct(int id);
+      Task<Boolean> DisableProduct(int catId);
+      Task<Boolean> EnableProduct(int catId);
     }
 }
