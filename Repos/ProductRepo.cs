@@ -26,7 +26,7 @@ namespace backend.Repos
             var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
-              return false;
+                return false;
             }
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
@@ -62,27 +62,41 @@ namespace backend.Repos
 
         public async Task<bool> DisableProduct(int Id)
         {
-          var product = _context.Products.Find(Id);
-          if (product == null)
-          {
-            return false;
-          }
-          product.Available = false;
-          await _context.SaveChangesAsync();
-          return true;
+            var product = _context.Products.Find(Id);
+            if (product == null)
+            {
+                return false;
+            }
+            product.Available = false;
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> EnableProduct(int catId)
         {
-          var product = _context.Products.Find(catId);
-          if (product == null)
-          {
-            return false;
-          }
-          product.Available = true;
-          await _context.SaveChangesAsync();
-          return true;
+            var product = _context.Products.Find(catId);
+            if (product == null)
+            {
+                return false;
+            }
+            product.Available = true;
+            await _context.SaveChangesAsync();
+            return true;
         }
+
+        public async Task<Boolean> AssignProductToCategory(int productId, int categoryId)
+        {
+            var product = _context.Products.Find(productId);
+            if (product == null)
+            {
+                return false;
+            }
+            product.CatId = categoryId;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+   
+
     }
 
 }
