@@ -14,6 +14,7 @@ CREATE TABLE Products (
 
 ALTER TABLE Products
 ADD Cat_ID int;
+Add Description nvarchar(255);
 
 Alter table Products
 add constraint FK_Product_Categories

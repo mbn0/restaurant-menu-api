@@ -24,10 +24,10 @@ namespace backend.Controllers
             return Ok(categories);
         }
         //GetCategory
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategory(int id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetCategory([FromRoute] int Id)
         {
-            var category = await _categoryRepo.GetCategory(id);
+            var category = await _categoryRepo.GetCategory(Id);
             if (category == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace backend.Controllers
 
         //AddCategory
         [HttpPost]
-        public async Task<IActionResult> AddCategory(AddCategoryDto category)
+        public async Task<IActionResult> AddCategory([FromBody] AddCategoryDto category)
         {
             var newCategory = await _categoryRepo.AddCategory(category);
             return CreatedAtAction(nameof(GetCategory), new { id = newCategory.CatId }, newCategory);
@@ -45,7 +45,7 @@ namespace backend.Controllers
 
         //UpdateCategory
         [HttpPut]
-        public async Task<IActionResult> UpdateCategory(EditCategoryDto category)
+        public async Task<IActionResult> UpdateCategory([FromBody]EditCategoryDto category)
         {
             try
             {
@@ -58,10 +58,10 @@ namespace backend.Controllers
             }
         }
         //DeleteCategory
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute]int Id)
         {
-            var result = await _categoryRepo.DeleteCategory(id);
+            var result = await _categoryRepo.DeleteCategory(Id);
             if (!result)
             {
                 return NotFound();

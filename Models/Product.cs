@@ -17,5 +17,7 @@ public partial class Product
 
     public int? CatId { get; set; }
 
+    public string? Description { get; set; }
+
     public virtual Category? Cat { get; set; }
 }

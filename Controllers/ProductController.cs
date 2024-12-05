@@ -22,26 +22,28 @@ namespace backend.Controllers
             return Ok(products);
         }
         //GetProduct
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProduct(int id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetProduct([FromRoute] int Id)
         {
-            var product = await _productRepo.GetProduct(id);
+            var product = await _productRepo.GetProduct(Id);
             if (product == null)
             {
                 return NotFound();
             }
             return Ok(product);
         }
+
         //AddProduct
         [HttpPost]
-        public async Task<IActionResult> AddProduct(AddProductDto product)
+        public async Task<IActionResult> AddProduct([FromBody]AddProductDto product)
         {
             var newProduct = await _productRepo.AddProduct(product);
             return CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, newProduct);
         }
+
         //UpdateProduct
         [HttpPut]
-        public async Task<IActionResult> UpdateProduct(EditProductDto product)
+        public async Task<IActionResult> UpdateProduct([FromBody] EditProductDto product)
         {
             try
             {
@@ -53,21 +55,22 @@ namespace backend.Controllers
                 return NotFound(ex.Message);
             }
         }
+
         //DeleteProduct
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute]int Id)
         {
-            var result = await _productRepo.DeleteProduct(id);
+            var result = await _productRepo.DeleteProduct(Id);
             if (result)
             {
                 return NoContent();
             }
             return NotFound();
         }
-        [HttpPut("{id}/disable")]
-        public async Task<IActionResult> DisableProduct(int id)
+        [HttpPut("{Id}/disable")]
+        public async Task<IActionResult> DisableProduct([FromRoute]int Id)
         {
-            var result = await _productRepo.DisableProduct(id);
+            var result = await _productRepo.DisableProduct(Id);
             if (result)
             {
                 return NoContent();
@@ -75,10 +78,10 @@ namespace backend.Controllers
             return NotFound();
         }
 
-        [HttpPut("{id}/enable")]
-        public async Task<IActionResult> EnableProduct(int id)
+        [HttpPut("{Id}/enable")]
+        public async Task<IActionResult> EnableProduct([FromRoute]int Id)
         {
-            var result = await _productRepo.EnableProduct(id);
+            var result = await _productRepo.EnableProduct(Id);
             if (result)
             {
                 return NoContent();

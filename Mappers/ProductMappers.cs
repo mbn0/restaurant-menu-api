@@ -13,6 +13,7 @@ namespace backend.Mappers
                 Name = addProductDto.ProductName,
                 Price = addProductDto.ProductPrice,
                 CatId = addProductDto.CatId,
+                Description = addProductDto.Description,
                 Image = addProductDto.ProductImage
             };
         }
@@ -23,6 +24,7 @@ namespace backend.Mappers
                 ProductId = product.Id,
                 ProductName = product.Name,
                 ProductPrice = product.Price,
+                Description = product.Description,
                 CatId = product.CatId,
                 ProductImage = product.Image
             };

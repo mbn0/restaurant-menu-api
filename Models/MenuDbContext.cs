@@ -42,6 +42,7 @@ public partial class MenuDbContext : DbContext
 
             entity.Property(e => e.Available).HasDefaultValue(true);
             entity.Property(e => e.CatId).HasColumnName("Cat_ID");
+            entity.Property(e => e.Description).HasMaxLength(255);
             entity.Property(e => e.Name).HasMaxLength(255);
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
