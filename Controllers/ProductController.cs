@@ -14,6 +14,7 @@ namespace backend.Controllers
         {
             _productRepo = productRepo;
         }
+
         //GetAllProducts
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
@@ -21,6 +22,7 @@ namespace backend.Controllers
             var products = await _productRepo.GetAllProducts();
             return Ok(products);
         }
+
         //GetProduct
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetProduct([FromRoute] int Id)
@@ -35,9 +37,9 @@ namespace backend.Controllers
 
         //AddProduct
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromBody]AddProductDto product)
+        public async Task<IActionResult> AddProduct([FromForm]AddProductDto product, IFormFile image)
         {
-            var newProduct = await _productRepo.AddProduct(product);
+            var newProduct = await _productRepo.AddProduct(product, image);
             return CreatedAtAction(nameof(GetProduct), new { id = newProduct.Id }, newProduct);
         }
 

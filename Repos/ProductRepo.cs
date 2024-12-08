@@ -14,9 +14,20 @@ namespace backend.Repos
         {
             _context = context;
         }
-        public async Task<Product> AddProduct(AddProductDto addProductDto)
+        public async Task<Product> AddProduct(AddProductDto addProductDto,IFormFile image)
         {
             var product = addProductDto.MapAddProductDtoToProduct();
+            byte[]? imageData = null;
+            if (image != null)
+            {
+              using (var memoryStearm = new MemoryStream())
+              {
+                await image.CopyToAsync(memoryStearm);
+                imageData= memoryStearm.ToArray();
+                product.Image = imageData;
+              }
+
+            }
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return product;
@@ -36,6 +47,7 @@ namespace backend.Repos
         {
             return await _context.Products.Select(product => product.MapProductToViewProductDto()).ToListAsync();
         }
+
         public async Task<ViewProductDto?> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

@@ -14,7 +14,6 @@ namespace backend.Mappers
                 Price = addProductDto.ProductPrice,
                 CatId = addProductDto.CatId,
                 Description = addProductDto.Description,
-                Image = addProductDto.ProductImage
             };
         }
         public static ViewProductDto MapProductToViewProductDto(this Product product)

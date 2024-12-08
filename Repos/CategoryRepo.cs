@@ -18,7 +18,7 @@ namespace backend.Repos
         public async Task<List<ViewCategoryDto>> GetAllCategories()
         {
             var categorys = await _context.Categories.ToListAsync();
-            var viewCategorys = categorys.Select(category => category.CategoryToViewCategoryDto()).ToList();
+            var viewCategorys = categorys.Select(category => category.MapCategoryToViewCategoryDto()).ToList();
 
             return viewCategorys;
         }
@@ -26,7 +26,7 @@ namespace backend.Repos
         public async Task<ViewCategoryDto?> GetCategory(int id)
         {
             var category = await _context.Categories.FindAsync(id);
-            var catDto = category?.CategoryToViewCategoryDto();
+            var catDto = category?.MapCategoryToViewCategoryDto();
             return catDto;
         }
 
@@ -45,7 +45,7 @@ namespace backend.Repos
 
         public async Task<Category> AddCategory(AddCategoryDto category)
         {
-            var newCategory = category.AddCategoryDtoToCategory();
+            var newCategory = category.MapAddCategoryDtoToCategory();
             _context.Categories.Add(newCategory);
             await _context.SaveChangesAsync();
             return newCategory;

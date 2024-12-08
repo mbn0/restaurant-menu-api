@@ -5,7 +5,7 @@ namespace backend.Mappers
 {
     public static class CategoryMappers
     {
-        public static ViewCategoryDto CategoryToViewCategoryDto(this Category category)
+        public static ViewCategoryDto MapCategoryToViewCategoryDto(this Category category)
         {
             return new ViewCategoryDto
             {
@@ -14,7 +14,7 @@ namespace backend.Mappers
                 CatImage = category.CatImage
             };
         }
-        public static Category AddCategoryDtoToCategory(this AddCategoryDto addCategoryDto)
+        public static Category MapAddCategoryDtoToCategory(this AddCategoryDto addCategoryDto)
         {
             return new Category
             {

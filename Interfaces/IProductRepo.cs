@@ -8,7 +8,7 @@ namespace backend.Interfaces
     {
       Task<List<ViewProductDto>> GetAllProducts();
       Task<ViewProductDto?> GetProduct(int Id);
-      Task<Product> AddProduct(AddProductDto product);
+      Task<Product> AddProduct(AddProductDto product, IFormFile image);
       Task<Product> EditProduct(EditProductDto product);
       Task<Boolean> DeleteProduct(int Id);
       Task<Boolean> DisableProduct(int catId);
