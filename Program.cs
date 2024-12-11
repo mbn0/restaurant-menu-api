@@ -16,6 +16,8 @@ builder.Services.AddDbContext<MenuDbContext>(options =>
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddControllers();
+builder.Services.AddCors(policy =>
+        { policy.AddPolicy("AllowOrigin", option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()); });
 
 var app = builder.Build();
 
@@ -26,6 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowOrigin");
 
-app.UseHttpsRedirection();
+app.MapControllers(); // Maps controller routes to be accessible
+//app.UseHttpsRedirection();
 app.Run();

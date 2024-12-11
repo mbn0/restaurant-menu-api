@@ -1,5 +1,5 @@
-using backend.Dtos.CategoryDtos;
 using backend.Dtos.ProductDtos;
+using backend.Interfaces;
 using backend.Repos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,8 +9,8 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly ProductRepo _productRepo;
-        public ProductController(ProductRepo productRepo)
+        private readonly IProductRepo _productRepo;
+        public ProductController(IProductRepo productRepo)
         {
             _productRepo = productRepo;
         }

@@ -1,17 +1,17 @@
 
 using backend.Dtos.CategoryDtos;
-using backend.Repos;
 using Microsoft.AspNetCore.Mvc;
+using backend.Interfaces;
 
 namespace backend.Controllers
 {
 
     [Route("api/[controller]")]
     [ApiController]
-    public class CatagoryController : Controller
+    public class CategoryController : Controller
     {
-        private readonly CategoryRepo _categoryRepo;
-        public CatagoryController(CategoryRepo categoryRepo)
+        private readonly ICategoryRepo _categoryRepo;
+        public CategoryController(ICategoryRepo categoryRepo)
         {
             _categoryRepo = categoryRepo;
         }
