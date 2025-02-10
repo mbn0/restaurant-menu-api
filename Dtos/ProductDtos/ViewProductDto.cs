@@ -5,6 +5,6 @@ namespace backend.Dtos {
     public decimal ProductPrice { get; set; }
     public string Description { get; set; } = string.Empty;
     public int? CatId { get; set; }
-     public byte[]? ProductImage { get; set; } = null;
+     public string? ProductImage { get; set; } = null;
   }
 }

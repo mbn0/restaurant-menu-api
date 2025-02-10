@@ -14,6 +14,5 @@ namespace backend.Interfaces
       Task<Boolean> DisableProduct(int catId);
       Task<Boolean> EnableProduct(int Id);
       Task<Boolean> AssignProductToCategory(int productId, int catId);
-          
     }
 }

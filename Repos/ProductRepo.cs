@@ -9,11 +9,13 @@ namespace backend.Repos
 {
     public class ProductRepo : IProductRepo
     {
+
         private readonly MenuDbContext _context;
         public ProductRepo(MenuDbContext context)
         {
             _context = context;
         }
+
         public async Task<Product> AddProduct(AddProductDto addProductDto,IFormFile image)
         {
             var product = addProductDto.MapAddProductDtoToProduct();
@@ -26,12 +28,13 @@ namespace backend.Repos
                 imageData= memoryStearm.ToArray();
                 product.Image = imageData;
               }
-
             }
+
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return product;
         }
+
         public async Task<Boolean> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -43,6 +46,7 @@ namespace backend.Repos
             await _context.SaveChangesAsync();
             return true;
         }
+
         public async Task<List<ViewProductDto>> GetAllProducts()
         {
             return await _context.Products.Select(product => product.MapProductToViewProductDto()).ToListAsync();
@@ -108,5 +112,4 @@ namespace backend.Repos
             return true;
         }
     }
-
 }

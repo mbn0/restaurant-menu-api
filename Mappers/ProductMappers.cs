@@ -25,7 +25,7 @@ namespace backend.Mappers
                 ProductPrice = product.Price,
                 Description = product.Description,
                 CatId = product.CatId,
-                ProductImage = product.Image
+                ProductImage= product.Image != null ? Convert.ToBase64String(product.Image) : null
             };
         }
     }

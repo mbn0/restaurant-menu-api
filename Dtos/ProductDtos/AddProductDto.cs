@@ -4,7 +4,7 @@ namespace backend.Dtos.ProductDtos
     {
         public string ProductName { get; set; } = string.Empty;
         public decimal ProductPrice { get; set; }
-        public int CatId { get; set; }
+        public int? CatId { get; set; }
         public string Description { get; set; } = string.Empty;
     }
 }
